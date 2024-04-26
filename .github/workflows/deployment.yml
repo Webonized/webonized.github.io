@@ -45,13 +45,13 @@ jobs:
 
       - name: Upload artifact (Automatic)
         if: (!github.event.inputs.page-root-directory)
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ${{env.page-root-directory}}
 
       - name: Upload artifact (Workflow Dispatch)
         if: (github.event.inputs.page-root-directory)
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ${{github.event.inputs.page-root-directory}}
 
