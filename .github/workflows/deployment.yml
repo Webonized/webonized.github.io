@@ -46,7 +46,7 @@ jobs:
         with:
           path: ${{env.page-root-directory}}
           
-      - name: Upload build artifact (Automatic)
+      - name: Upload build artifact (Workflow Dispatch)
         if: (github.event.inputs.page-root-directory)
         uses: actions/upload-artifact@v4
         with:
