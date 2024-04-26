@@ -21,11 +21,10 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    name: Deploy Page
+  build:
+    name: Build Page
     env:
       deno-version: v1.x
-      page-root-directory: './dist/'
 
     runs-on: ubuntu-latest
     steps:
@@ -39,7 +38,15 @@ jobs:
           
       - name: Build Page
         run: deno task build
+        
+  deploy:
+    name: Deploy Page
+    needs: [build]
+    env:
+      page-root-directory: './dist/'
 
+    runs-on: ubuntu-latest
+    steps:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
@@ -58,3 +65,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v3
+          
